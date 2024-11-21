@@ -1,0 +1,12 @@
+<div [hidden]="hide">
+    <p>fournisseur works!</p>
+
+    <p>IdFournisseur: {{ idFournisseur }}</p>
+    <p>Code: {{ code }}</p>
+    <p>Libelle: {{ libelle }}</p>
+  </div>
+  
+ <!-- Le bouton affiche "Afficher" ou "Cacher" selon l'état -->
+<button (click)="toggleHide()">
+    {{ hide ? 'Afficher' : 'Cacher' }}
+  </button>

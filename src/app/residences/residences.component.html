@@ -1,0 +1,49 @@
+<div class="search-container">
+  <input 
+    type="text" 
+    placeholder="Rechercher par adresse..." 
+    [(ngModel)]="searchTerm" 
+    class="search-input"
+  />
+</div>
+
+<!-- Liste filtrée des résidences -->
+<div *ngFor="let residence of getFilteredResidences()" class="residence-card">
+  <img [src]="residence.image" alt="{{ residence.name }}" />
+  <h2>{{ residence.name }}</h2>
+  <p>
+    Status: 
+    <span [ngClass]="{
+      'statut-disponible': residence.status === 'Disponible',
+      'statut-construction': residence.status === 'En Construction',
+      'statut-vendu': residence.status === 'Vendu'
+    }">
+      {{ residence.status }}
+    </span>
+  </p>
+
+  <!-- Icône ou message selon le statut -->
+  <div *ngIf="residence.status === 'Disponible'">
+    <span class="icon-available">✔️ Disponible</span>
+  </div>
+  <div *ngIf="residence.status === 'En Construction'">
+    <span class="icon-construction">🚧 En Construction</span>
+  </div>
+  <div *ngIf="residence.status === 'Vendu'">
+    <span class="icon-sold">❌ Vendu</span>
+  </div>
+
+  <!-- Boutons -->
+  <button (click)="showLocation(residence.address)">Show Location</button>
+  <button class="like-button" (click)="addToFavorites(residence)">❤️ Like</button>
+</div>
+
+<hr />
+
+<!-- Liste des favoris -->
+<h3>Favoris :</h3>
+<ul>
+  <li *ngFor="let fav of favoriteResidences">
+    {{ fav.name }} - {{ fav.address }}
+  </li>
+</ul>

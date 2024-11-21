@@ -1,0 +1,132 @@
+/* Conteneur de recherche */
+.search-container {
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: flex-end; /* Aligne la barre à droite */
+  }
+  
+  /* Barre de recherche */
+  .search-input {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    margin-bottom: 16px;
+    border: 2px solid #007bff; /* Mettre en valeur */
+    border-radius: 20px; /* Bord arrondi pour un effet moderne */
+    font-size: 16px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ajouter une ombre pour l'effet de relief */
+    transition: 0.3s ease; /* Transition pour un effet au survol */
+  }
+  
+  /* Changement de couleur au focus */
+  .search-input:focus {
+    border-color: #0056b3; /* Changer la couleur au focus */
+    outline: none;
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.5); /* Accentuer l'ombre au focus */
+  }
+  
+  /* Animation au survol */
+  .search-input:hover {
+    border-color: #0056b3; /* Changer la couleur au survol */
+    box-shadow: 0 4px 8px rgba(0, 123, 255, 0.4);
+  }
+  
+  /* Style pour chaque carte de résidence */
+  .residence-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 12px;
+    text-align: center;
+    max-width: 300px;
+    display: inline-block;
+    margin-right: 12px;
+  }
+  
+  /* Image dans les cartes */
+  .residence-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  /* Styles spécifiques au statut */
+  .statut-disponible {
+    color: green;
+    font-weight: bold;
+  }
+  
+  .statut-construction {
+    color: orange;
+    font-weight: bold;
+  }
+  
+  .statut-vendu {
+    color: red;
+    font-weight: bold;
+  }
+  
+  /* Icônes selon le statut */
+  .icon-available {
+    color: green;
+  }
+  
+  .icon-construction {
+    color: orange;
+  }
+  
+  .icon-sold {
+    color: red;
+  }
+  
+  /* Boutons généraux */
+  button {
+    margin-top: 8px;
+    padding: 8px 12px;
+    border: none;
+    background-color: #007bff;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Bouton "Like" */
+  .like-button {
+    margin-top: 8px;
+    padding: 8px 12px;
+    border: none;
+    background-color: #ff4757;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .like-button:hover {
+    background-color: #e84118;
+  }
+  .residences-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px; /* Espacement entre les éléments */
+    padding: 16px;
+  }
+  
+  .residence-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+    background-color: #f9f9f9;
+  }
+  
+  .residence-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+  }
+  
+  
