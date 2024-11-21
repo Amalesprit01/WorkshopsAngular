@@ -1,0 +1,16 @@
+fieldset {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  button {
+    margin-top: 10px;
+  }
+  
+  span {
+    color: green;
+    font-weight: bold;
+    margin-left: 10px;
+  }
+  

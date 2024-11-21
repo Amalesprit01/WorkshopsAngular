@@ -1,1 +1,31 @@
-<p>list-produit works!</p>
+<div>
+    <h2>Liste des Produits</h2>
+  
+    <!-- Recherche de produit -->
+    <label for="search">Recherche produit :</label>
+    <input
+      id="search"
+      type="text"
+      [(ngModel)]="searchQuery"
+      placeholder="Entrez le code produit"
+    />
+  
+    <!-- Liste des produits -->
+    <div *ngFor="let produit of filteredProduits; let i = index">
+      <fieldset>
+        <legend>Produit {{ produit.idProduit }}</legend>
+        <p>Code: {{ produit.code }}</p>
+        <p>Libelle: {{ produit.libelle }}</p>
+        <p>Prix Unitaire: {{ produit.prixUnitaire }}</p>
+        <p>Taux TVA: {{ produit.tauxTVA }}</p>
+        <button
+          [disabled]="produit.tauxTVA === 0.20"
+          (click)="adjustTVA(i)"
+        >
+          Ajuster TVA
+        </button>
+        <span *ngIf="modifiedIndexes.has(i)">TVA modifiée</span>
+      </fieldset>
+    </div>
+</div>
+  
