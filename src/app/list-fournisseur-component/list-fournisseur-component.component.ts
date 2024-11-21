@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Fournisseur } from '../core/models/Fournisseur.model';
+import { Fournisseur } from '../core/models/fournisseur.model';
 
 
 @Component({
