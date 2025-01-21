@@ -11,6 +11,8 @@
 <div *ngFor="let residence of getFilteredResidences()" class="residence-card">
   <img [src]="residence.image" alt="{{ residence.name }}" />
   <h2>{{ residence.name }}</h2>
+  <button *ngIf="residence.id !== undefined" (click)="deleteResidence(residence.id!)">Supprimer</button>
+  <button [routerLink]="['/residences', residence.id]">Voir Détails</button>
   <p>
     Status: 
     <span [ngClass]="{
@@ -32,10 +34,12 @@
   <div *ngIf="residence.status === 'Vendu'">
     <span class="icon-sold">❌ Vendu</span>
   </div>
-
-  <!-- Boutons -->
+<div *ngIf="residence.address">
   <button (click)="showLocation(residence.address)">Show Location</button>
   <button class="like-button" (click)="addToFavorites(residence)">❤️ Like</button>
+</div>
+  <!-- Boutons -->
+  
 </div>
 
 <hr />
@@ -45,5 +49,13 @@
 <ul>
   <li *ngFor="let fav of favoriteResidences">
     {{ fav.name }} - {{ fav.address }}
+  </li>
+</ul>
+
+
+{{same}}
+<ul>
+  <li *ngFor="let fav of listtest">
+    {{fav.name}}
   </li>
 </ul>

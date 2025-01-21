@@ -1,5 +1,8 @@
+import { CommonServiceService } from './../core/Service/common-service.service';
+import { ResidenceService } from './../service/residence.service';
 import { Component } from '@angular/core';
 import { Residence } from '../core/models/residence.model';
+import { ResidenceNewService } from '../core/Service/residence-new.service';
 
 @Component({
   selector: 'app-residences',
@@ -7,15 +10,14 @@ import { Residence } from '../core/models/residence.model';
   styleUrls: ['./residences.component.css']
 })
 export class ResidencesComponent {
-  listResidences: Residence[] = [
-    { id: 1, name: "El fel", address: "Borj Cedria", image: "../../assets/images/R1.jpg", status: "Disponible" },
-    { id: 2, name: "El yasmine", address: "Ezzahra", image: "../../assets/images/R2.jpg", status: "Disponible" },
-    { id: 3, name: "El Arij", address: "Rades", image: "../../assets/images/R3.jpg", status: "Vendu" },
-    { id: 4, name: "El Anber", address: "inconnu", image: "../../assets/images/R4.jpg", status: "En Construction" }
-  ];
 
+  listResidences: Residence[] = []
   favoriteResidences: Residence[] = [];
   searchTerm: string = ''; // Valeur de la recherche
+  same =0 ;
+  listtest:any[] = [];
+
+  constructor(private residenceService:ResidenceService , private commonServiceService: CommonServiceService ,private  residenceNewService:ResidenceNewService) { }
 
   showLocation(address: string): void {
     if (address === 'inconnu') {
@@ -36,7 +38,42 @@ export class ResidencesComponent {
 
   getFilteredResidences(): Residence[] {
     return this.listResidences.filter(residence =>
-      residence.address.toLowerCase().includes(this.searchTerm.toLowerCase())
+      residence.address?.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
+  }
+
+  deleteResidence(id: number): void {
+    if (confirm('Êtes-vous sûr de vouloir supprimer cette résidence ?')) {
+      this.residenceNewService.deleteResidence(id).subscribe(
+        () => {
+          // Mise à jour locale de la liste des résidences après suppression
+          this.listResidences = this.listResidences.filter(residence => residence.id !== id);
+          alert('Résidence supprimée avec succès.');
+        },
+        error => {
+          console.error('Erreur lors de la suppression de la résidence :', error);
+          alert('Une erreur s\'est produite lors de la suppression. Veuillez réessayer.');
+        }
+      );
+    }
+  }
+  
+
+  getSameValueOf(){
+    this.same = this.commonServiceService.getSameValueOf(this.listResidences , "name" , "El Anber")
+  } 
+
+  getResidences(){
+    this.residenceNewService.getResidences().subscribe(
+      data=>this.listtest=data
+    )
+  }
+  
+ 
+  ngOnInit() {
+  this.listResidences = this.residenceService.getAllResidence();
+  this.getSameValueOf()
+  this.getResidences()
+  
   }
 }

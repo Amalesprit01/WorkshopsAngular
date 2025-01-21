@@ -1,0 +1,25 @@
+<form [formGroup]="productForm" (ngSubmit)="onSave()">
+    <div>
+      <label for="title">Titre :</label>
+      <input id="title" type="text" formControlName="title" />
+      <div *ngIf="productForm.get('title')?.touched && productForm.get('title')?.invalid">
+        <div *ngIf="productForm.get('title')?.errors?.['required']">Le titre est obligatoire.</div>
+        <div *ngIf="productForm.get('title')?.errors?.['pattern']">Le titre doit contenir au moins 3 lettres.</div>
+      </div>
+    </div>
+  
+    <div>
+      <label for="description">Description :</label>
+      <textarea id="description" formControlName="description"></textarea>
+      <div *ngIf="productForm.get('description')?.touched && productForm.get('description')?.invalid">
+        <div *ngIf="productForm.get('description')?.errors?.['required']">La description est obligatoire.</div>
+        <div *ngIf="productForm.get('description')?.errors?.['minlength']">La description doit contenir au moins 10 caractères.</div>
+      </div>
+    </div>
+  
+   
+    
+  
+    <button type="submit" [disabled]="productForm.invalid">Ajouter le produit</button>
+  </form>
+  

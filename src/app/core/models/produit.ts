@@ -4,5 +4,6 @@ export interface Produit {
     libelle: string;
     prixUnitaire: number;
     tauxTVA: number;
+    quantity: number;
   }
   

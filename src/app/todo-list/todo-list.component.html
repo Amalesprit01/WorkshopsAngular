@@ -1,0 +1,7 @@
+<ul>
+    <li *ngFor="let todo of listTodo">
+      {{ todo.title }} - {{ todo.completed ? 'Completed' : 'Not Completed' }}
+    </li>
+  </ul>
+  <button (click)="showBilan()">Bilan</button>
+  

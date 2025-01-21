@@ -1,0 +1,22 @@
+<div *ngIf="residenceDetails && residenceDetails.id" class="residence-details">
+    <h2>Détails de la résidence</h2>
+    <div class="details">
+      <p><strong>Résidence ID :</strong> <span id="residenceId">{{ residenceDetails.id }}</span></p>
+      <p><strong>Nom :</strong> <span id="residenceName">{{ residenceDetails.name }}</span></p>
+      <p><strong>Adresse :</strong> <span id="residenceAddress">{{ residenceDetails.address }}</span></p>
+      <p><strong>État :</strong> <span id="residenceStatus">{{ residenceDetails.status }}</span></p>
+    </div>
+  
+    <div class="buttons">
+      <button id="previousButton" (click)="navigateResidence(-1)" [disabled]="residenceDetails.id === 1" class="btn btn-secondary">
+        Previous
+      </button>
+      <button id="nextButton" (click)="navigateResidence(1)" class="btn btn-primary">Next</button>
+    </div>
+  
+    <div class="actions">
+      <button (click)="navigateToAdd()" class="btn btn-success">Add Residence</button>
+      <button (click)="navigateToUpdate(residenceDetails.id)" class="btn btn-warning">Update Residence</button>
+    </div>
+  </div>
+  

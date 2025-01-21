@@ -1,0 +1,331 @@
+/** 
+
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { CollectsListComponent } from './collects-list/collects-list.component';
+import { CollectDetailsComponent } from './collect-details/collect-details.component';
+import { UpdateCollectComponent } from './update-collect/update-collect.component';
+import { ErrorComponent } from './error/error.component';
+
+const routes: Routes = [
+  { path: '', redirectTo: '/list', pathMatch: 'full' }, // Redirection vers la liste des collectes
+  { path: 'list', component: CollectsListComponent },  // Affiche la liste des collectes
+  { path: 'details/:id', component: CollectDetailsComponent }, // Affiche les détails d'une collecte
+  { path: 'update/:id', component: UpdateCollectComponent }, // Permet de modifier une collecte
+  { path: '**', component: ErrorComponent }, // Route pour gérer les erreurs 404
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule],
+})
+export class AppRoutingModule {}
+
+index.html
+C'est le fichier principal qui charge l'application Angular dans le navigateur.
+main.ts
+Point d'entrée de l'application. Il charge le module racine (AppModule) et bootstrappe le composant racine (AppComponent).
+AppModule
+Le module principal de l'application, où les dépendances et les composants sont déclarés.
+AppComponent
+Le composant racine de l'application qui affiche le contenu principal.
+5. Identifier la cause de l’erreur NullInjectorError et comment la corriger ?
+Cause de l’erreur : Le service CollecteService n’a pas été déclaré dans la section providers de AppModule.
+Correction : Ajouter CollecteService dans la section providers de AppModule :
+typescript
+Copier le code
+@NgModule({
+  declarations: [...],
+  imports: [...],
+  providers: [CollecteService],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
+6. Compléter le code de CollectDetailsComponent
+Voici le code complet du fichier HTML (voir Figure 4) :
+
+html
+Copier le code
+<div *ngIf="collect">
+  <h2>Détails du Déchet</h2>
+  <p>Type de Déchet: {{ collect.typeDechet }}</p>
+  <p>Zone: {{ collect.zone }}</p>
+  <p>Capacité: {{ collect.capacite }}</p>
+  <p>Date de Collecte: {{ collect.date }}</p>
+  <p>Statut: {{ collect.statut }}</p>
+  <button [routerLink]="['/update', collect.id]">Mettre à jour</button>
+</div>
+7. Correction du bouton "Mettre à jour"
+Vérifiez que le service CollecteService est injecté correctement dans UpdateCollectComponent.
+Assurez-vous que l'URL de redirection routerLink est correcte et que les routes sont configurées.
+8. Récupérer les paramètres depuis l’URL
+Dans CollectDetailsComponent :
+
+typescript
+Copier le code
+ngOnInit() {
+  const id = this.actR.snapshot.params['id'];
+  this.service.getCollectById(id).subscribe((data) => {
+    this.collect = data;
+  });
+}
+Dans UpdateCollectComponent :
+
+typescript
+Copier le code
+ngOnInit() {
+  const id = this.actR.snapshot.params['id'];
+  this.service.getCollectById(id).subscribe((data) => {
+    this.updateForm.patchValue(data);
+  });
+}
+9. Compléter le formulaire dans update-collect.component.ts
+typescript
+Copier le code
+ngOnInit() {
+  this.updateForm = this.fb.group({
+    typeDechet: ['', Validators.required],
+    zone: ['', [Validators.required, Validators.minLength(3)]],
+    statut: ['', [Validators.required, Validators.pattern('(En attente|En cours|Collectée)')]],
+    date: ['', Validators.required],
+    capacite: ['', [Validators.required, Validators.min(1), Validators.max(5000)]],
+  });
+
+  const id = this.actR.snapshot.params['id'];
+  this.service.getCollectById(id).subscribe((data) => {
+    this.updateForm.patchValue(data);
+  });
+}
+10. Identifier la cause de l’erreur NG8002 (formGroup inconnue)
+Cause de l’erreur : Le module ReactiveFormsModule n’a pas été importé dans AppModule.
+Correction : Ajoutez ReactiveFormsModule dans la section imports de AppModule :
+typescript
+Copier le code
+import { ReactiveFormsModule } from '@angular/forms';
+
+@NgModule({
+  declarations: [...],
+  imports: [
+    ReactiveFormsModule,
+    ...
+  ],
+  bootstrap: [AppComponent],
+})
+export class AppModule {}
+11. Compléter la méthode updateCollect
+typescript
+Copier le code
+updateDechet() {
+  this.service.updateCollect(this.updateForm.value).subscribe(
+    () => {
+      this.router.navigate(['/list']);
+    },
+    (error) => {
+      console.error('Error updating collect:', error);
+    }
+  );
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ */

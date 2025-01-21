@@ -1,0 +1,78 @@
+<form [formGroup]="userForm" (ngSubmit)="onSave()">
+
+  <div>
+    <label>First Name</label>
+    <input type="text" formControlName="firstName" />
+    <div *ngIf="userForm.get('firstName')?.touched && userForm.get('firstName')?.invalid">
+      <div *ngIf="userForm.get('firstName')?.errors?.['required']">First Name is required.</div>
+      <div *ngIf="userForm.get('firstName')?.errors?.['pattern']">First Name must contain at least 3 letters.</div>
+    </div>
+  </div>
+
+  <div>
+    <label>Last Name</label>
+    <input type="text" formControlName="lastName" />
+    <div *ngIf="userForm.get('lastName')?.touched && userForm.get('lastName')?.invalid">
+      <div *ngIf="userForm.get('lastName')?.errors?.['required']">Last Name is required.</div>
+      <div *ngIf="userForm.get('lastName')?.errors?.['pattern']">Last Name must contain at least 3 letters.</div>
+    </div>
+  </div>
+
+  <div>
+    <label>Birth Date</label>
+    <input type="date" formControlName="birthDate" />
+    <div *ngIf="userForm.get('birthDate')?.touched && userForm.get('birthDate')?.invalid">
+      <div *ngIf="userForm.get('birthDate')?.errors?.['required']">Birth Date is required.</div>
+    </div>
+  </div>
+
+  <div>
+    <label>Email</label>
+    <input type="email" formControlName="email" />
+    <div *ngIf="userForm.get('email')?.touched && userForm.get('email')?.invalid">
+      <div *ngIf="userForm.get('email')?.errors?.['required']">Email is required.</div>
+      <div *ngIf="userForm.get('email')?.errors?.['email']">Please enter a valid email.</div>
+      <div *ngIf="userForm.get('email')?.errors?.['pattern']">Email must be a valid Gmail address.</div>
+    </div>
+  </div>
+
+  <div>
+    <label>Password</label>
+    <input type="password" formControlName="password" />
+    <div *ngIf="userForm.get('password')?.touched && userForm.get('password')?.invalid">
+      <div *ngIf="userForm.get('password')?.errors?.['required']">Password is required.</div>
+      <div *ngIf="userForm.get('password')?.errors?.['minlength']">Password must contain at least 8 characters.</div>
+      <div *ngIf="userForm.get('password')?.errors?.['pattern']">Password must include at least one letter and one number.</div>
+    </div>
+  </div>
+
+  <div>
+    <label>Profession</label>
+    <input type="text" formControlName="profession" />
+    <div *ngIf="userForm.get('profession')?.touched && userForm.get('profession')?.invalid">
+      <div *ngIf="userForm.get('profession')?.errors?.['required']">Profession is required.</div>
+      <div *ngIf="userForm.get('profession')?.errors?.['minlength']">Profession must contain at least 2 characters.</div>
+    </div>
+  </div>
+
+  <div>
+    <label>Account Category</label>
+    <select formControlName="accountCategory">
+      <option value="Customer">Customer</option>
+      <option value="Admin">Admin</option>
+    </select>
+    <div *ngIf="userForm.get('accountCategory')?.touched && userForm.get('accountCategory')?.invalid">
+      <div *ngIf="userForm.get('accountCategory')?.errors?.['required']">Account Category is required.</div>
+    </div>
+  </div>
+
+  <div>
+    <label>Picture</label>
+    <input type="file" formControlName="picture" />
+    <div *ngIf="userForm.get('picture')?.touched && userForm.get('picture')?.invalid">
+      <div *ngIf="userForm.get('picture')?.errors?.['required']">Picture is required.</div>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="userForm.invalid">Save</button>
+</form>

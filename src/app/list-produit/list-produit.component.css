@@ -1,16 +1,84 @@
+/* Style global pour le conteneur principal */
+div {
+  font-family: Arial, sans-serif;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Titre principal */
+h2 {
+  text-align: center;
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+/* Bouton principal */
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 5px 0;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button[disabled] {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Champ de recherche */
+input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+/* Liste des produits */
+div div {
+  margin-bottom: 15px;
+}
+
+/* Fieldset styling */
 fieldset {
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #ccc;
-  }
-  
-  button {
-    margin-top: 10px;
-  }
-  
-  span {
-    color: green;
-    font-weight: bold;
-    margin-left: 10px;
-  }
-  
+  border: 1px solid #007bff;
+  border-radius: 8px;
+  padding: 15px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+legend {
+  font-weight: bold;
+  color: #007bff;
+  padding: 0 5px;
+}
+
+/* Texte */
+p {
+  margin: 5px 0;
+  color: #555;
+}
+
+/* Marqueur de TVA modifiée */
+span {
+  color: green;
+  font-size: 12px;
+  font-weight: bold;
+}
